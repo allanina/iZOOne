@@ -5,17 +5,19 @@
  */
 package visão;
 
+import controle.ConexaoBD;
+
 /**
  *
  * @author allan
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaPrincipal
-     */
+    ConexaoBD conecta = new ConexaoBD();
+    
     public TelaPrincipal() {
         initComponents();
+        conecta.conexao();
     }
 
     /**
@@ -45,6 +47,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItemAnim = new javax.swing.JMenuItem();
         jMenuItemAçoesAnim = new javax.swing.JMenuItem();
         jMenuPrincSair = new javax.swing.JMenu();
+        jMenuItemSairMenuPrinc = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar2.add(jMenu1);
@@ -115,6 +118,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuPrincSairActionPerformed(evt);
             }
         });
+
+        jMenuItemSairMenuPrinc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconesairpeq.png"))); // NOI18N
+        jMenuItemSairMenuPrinc.setText("Sair");
+        jMenuItemSairMenuPrinc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSairMenuPrincActionPerformed(evt);
+            }
+        });
+        jMenuPrincSair.add(jMenuItemSairMenuPrinc);
+
         jMenuBar1.add(jMenuPrincSair);
 
         setJMenuBar(jMenuBar1);
@@ -124,7 +137,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuPrincSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrincSairActionPerformed
-      
+        
     }//GEN-LAST:event_jMenuPrincSairActionPerformed
 
     private void jMenuItemEquipeCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEquipeCompletaActionPerformed
@@ -135,6 +148,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
       FormEquipe tela = new FormEquipe();
       tela.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroActionPerformed
+
+    private void jMenuItemSairMenuPrincActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairMenuPrincActionPerformed
+        conecta.desconecta();
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItemSairMenuPrincActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +207,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAçoesAnim;
     private javax.swing.JMenuItem jMenuItemCadastro;
     private javax.swing.JMenuItem jMenuItemEquipeCompleta;
+    private javax.swing.JMenuItem jMenuItemSairMenuPrinc;
     private javax.swing.JMenu jMenuPrincSair;
     // End of variables declaration//GEN-END:variables
 }

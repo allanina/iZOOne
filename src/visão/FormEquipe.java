@@ -5,15 +5,21 @@
  */
 package visão;
 
+import controle.ConexaoBD;
+import controle.ControleEquipe;
+import modelo.ModeloEquipe;
+
 /**
  *
  * @author allan
  */
 public class FormEquipe extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormEquipe
-     */
+    ModeloEquipe mod = new ModeloEquipe();
+    ControleEquipe control = new ControleEquipe();
+    ConexaoBD conex = new ConexaoBD();
+    
+    
     public FormEquipe() {
         initComponents();
     }
@@ -31,7 +37,7 @@ public class FormEquipe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedEquIdent = new javax.swing.JFormattedTextField();
+        jFormattedCpfEqu = new javax.swing.JFormattedTextField();
         jTextFieldNomeFunc = new javax.swing.JTextField();
         jComboBoxFunçoes = new javax.swing.JComboBox<>();
         jButtonSalvarEquip = new javax.swing.JButton();
@@ -46,19 +52,24 @@ public class FormEquipe extends javax.swing.JFrame {
 
         jLabel1.setText("Nome:");
 
-        jLabel2.setText("Identificação:");
+        jLabel2.setText("CPF:");
 
         jLabel3.setText("Função:");
 
-        jFormattedEquIdent.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedCpfEqu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedEquIdentActionPerformed(evt);
+                jFormattedCpfEquActionPerformed(evt);
             }
         });
 
         jComboBoxFunçoes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Veterinário(a)", "Biólogo(a)", "ASG", "Administrador(a)", "Suporte TI", "Recepção/Ouvidoria", "Segurança" }));
 
         jButtonSalvarEquip.setText("Salvar");
+        jButtonSalvarEquip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarEquipActionPerformed(evt);
+            }
+        });
 
         jButtonCancelarEquip.setText("Cancelar");
 
@@ -82,7 +93,7 @@ public class FormEquipe extends javax.swing.JFrame {
         jPanelCadastroEquipeLayout.setHorizontalGroup(
             jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
                         .addComponent(jTextFieldPesquisaEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,7 +105,7 @@ public class FormEquipe extends javax.swing.JFrame {
                             .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jFormattedEquIdent, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jFormattedCpfEqu, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,7 +137,7 @@ public class FormEquipe extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jFormattedEquIdent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedCpfEqu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvarEquip)
@@ -171,9 +182,16 @@ public class FormEquipe extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedEquIdentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedEquIdentActionPerformed
+    private void jFormattedCpfEquActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedCpfEquActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedEquIdentActionPerformed
+    }//GEN-LAST:event_jFormattedCpfEquActionPerformed
+
+    private void jButtonSalvarEquipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarEquipActionPerformed
+        mod.setNome(jTextFieldNomeFunc.getText());
+        mod.setCargo((String) jComboBoxFunçoes.getSelectedItem());
+        mod.setCpf(Integer.parseInt(jFormattedCpfEqu.getText()));
+        control.Salvar(mod);
+    }//GEN-LAST:event_jButtonSalvarEquipActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +233,7 @@ public class FormEquipe extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLupaEquip;
     private javax.swing.JButton jButtonSalvarEquip;
     private javax.swing.JComboBox<String> jComboBoxFunçoes;
-    private javax.swing.JFormattedTextField jFormattedEquIdent;
+    private javax.swing.JFormattedTextField jFormattedCpfEqu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
