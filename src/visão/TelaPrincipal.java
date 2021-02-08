@@ -6,6 +6,8 @@
 package visão;
 
 import controle.ConexaoBD;
+import java.text.Normalizer.Form;
+
 
 /**
  *
@@ -41,7 +43,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelFundoMenu = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuEquipe = new javax.swing.JMenu();
-        jMenuItemEquipeCompleta = new javax.swing.JMenuItem();
         jMenuItemCadastro = new javax.swing.JMenuItem();
         jMenuAnimais = new javax.swing.JMenu();
         jMenuItemAnim = new javax.swing.JMenuItem();
@@ -78,15 +79,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuEquipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconeequipe.png"))); // NOI18N
         jMenuEquipe.setText("Equipe");
 
-        jMenuItemEquipeCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconefuncionarios.png"))); // NOI18N
-        jMenuItemEquipeCompleta.setText("Equipe");
-        jMenuItemEquipeCompleta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemEquipeCompletaActionPerformed(evt);
-            }
-        });
-        jMenuEquipe.add(jMenuItemEquipeCompleta);
-
         jMenuItemCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconecadastrarusuario.png"))); // NOI18N
         jMenuItemCadastro.setText("Cadastrar membro");
         jMenuItemCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -103,10 +95,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuItemAnim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconetodosanimais.png"))); // NOI18N
         jMenuItemAnim.setText("Ver animais");
+        jMenuItemAnim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAnimActionPerformed(evt);
+            }
+        });
         jMenuAnimais.add(jMenuItemAnim);
 
         jMenuItemAçoesAnim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconeações.png"))); // NOI18N
         jMenuItemAçoesAnim.setText("Adicionar nova ação");
+        jMenuItemAçoesAnim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAçoesAnimActionPerformed(evt);
+            }
+        });
         jMenuAnimais.add(jMenuItemAçoesAnim);
 
         jMenuBar1.add(jMenuAnimais);
@@ -140,10 +142,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuPrincSairActionPerformed
 
-    private void jMenuItemEquipeCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEquipeCompletaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemEquipeCompletaActionPerformed
-
     private void jMenuItemCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroActionPerformed
       FormEquipe tela = new FormEquipe();
       tela.setVisible(true);
@@ -153,6 +151,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         conecta.desconecta();
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSairMenuPrincActionPerformed
+
+    private void jMenuItemAnimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAnimActionPerformed
+       Animais tela = new Animais();
+       tela.setVisible(true);
+       
+    }//GEN-LAST:event_jMenuItemAnimActionPerformed
+
+    private void jMenuItemAçoesAnimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAçoesAnimActionPerformed
+       FormAcoesAnimais tela = new FormAcoesAnimais();
+       tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAçoesAnimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,7 +215,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAnim;
     private javax.swing.JMenuItem jMenuItemAçoesAnim;
     private javax.swing.JMenuItem jMenuItemCadastro;
-    private javax.swing.JMenuItem jMenuItemEquipeCompleta;
     private javax.swing.JMenuItem jMenuItemSairMenuPrinc;
     private javax.swing.JMenu jMenuPrincSair;
     // End of variables declaration//GEN-END:variables

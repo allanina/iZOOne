@@ -7,6 +7,10 @@ package visão;
 
 import controle.ConexaoBD;
 import controle.ControleEquipe;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import modelo.ModeloEquipe;
 
 /**
@@ -33,36 +37,47 @@ public class FormEquipe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanelCadastroEquipe = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedCpfEqu = new javax.swing.JFormattedTextField();
         jTextFieldNomeFunc = new javax.swing.JTextField();
-        jComboBoxFunçoes = new javax.swing.JComboBox<>();
         jButtonSalvarEquip = new javax.swing.JButton();
-        jButtonCancelarEquip = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableEquipe = new javax.swing.JTable();
-        jTextFieldPesquisaEquip = new javax.swing.JTextField();
-        jButtonLupaEquip = new javax.swing.JButton();
+        txtCPF = new javax.swing.JTextField();
+        jTextFieldCargo = new javax.swing.JTextField();
         jLabelCadastroEquipe = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableTabelaEquipe = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nome:");
 
-        jLabel2.setText("CPF:");
+        jLabel2.setText("CPF/Matrícula:");
 
-        jLabel3.setText("Função:");
+        jLabel3.setText("Cargo:");
 
-        jFormattedCpfEqu.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNomeFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedCpfEquActionPerformed(evt);
+                jTextFieldNomeFuncActionPerformed(evt);
             }
         });
-
-        jComboBoxFunçoes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Veterinário(a)", "Biólogo(a)", "ASG", "Administrador(a)", "Suporte TI", "Recepção/Ouvidoria", "Segurança" }));
 
         jButtonSalvarEquip.setText("Salvar");
         jButtonSalvarEquip.addActionListener(new java.awt.event.ActionListener() {
@@ -71,89 +86,94 @@ public class FormEquipe extends javax.swing.JFrame {
             }
         });
 
-        jButtonCancelarEquip.setText("Cancelar");
-
-        jTableEquipe.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
+        txtCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTableEquipe);
-
-        jButtonLupaEquip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconelupa.png"))); // NOI18N
+        });
 
         javax.swing.GroupLayout jPanelCadastroEquipeLayout = new javax.swing.GroupLayout(jPanelCadastroEquipe);
         jPanelCadastroEquipe.setLayout(jPanelCadastroEquipeLayout);
         jPanelCadastroEquipeLayout.setHorizontalGroup(
             jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                        .addComponent(jTextFieldPesquisaEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonLupaEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jFormattedCpfEqu, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldNomeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                                .addComponent(jButtonSalvarEquip)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonCancelarEquip))
-                            .addComponent(jComboBoxFunçoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(34, 34, 34))
-            .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(27, 27, 27)
+                .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldNomeFunc, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                    .addComponent(txtCPF))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastroEquipeLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSalvarEquip)
+                .addGap(25, 25, 25))
         );
         jPanelCadastroEquipeLayout.setVerticalGroup(
             jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCadastroEquipeLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(23, 23, 23)
                 .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldNomeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBoxFunçoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jFormattedCpfEqu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSalvarEquip)
-                    .addComponent(jButtonCancelarEquip))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addGroup(jPanelCadastroEquipeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldPesquisaEquip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLupaEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonSalvarEquip)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jLabelCadastroEquipe.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelCadastroEquipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconecadastrarusuario.png"))); // NOI18N
         jLabelCadastroEquipe.setText("Cadastro de funcionário");
+
+        jTableTabelaEquipe.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nome", "CPF", "Cargo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTableTabelaEquipe);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,12 +181,17 @@ public class FormEquipe extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelCadastroEquipe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelCadastroEquipe)
-                .addGap(173, 173, 173))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelCadastroEquipe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelCadastroEquipe)
+                        .addGap(173, 173, 173))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,23 +200,30 @@ public class FormEquipe extends javax.swing.JFrame {
                 .addComponent(jLabelCadastroEquipe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelCadastroEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(293, 293, 293))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(581, 581, 581))
         );
 
-        setSize(new java.awt.Dimension(541, 473));
+        setSize(new java.awt.Dimension(546, 474));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedCpfEquActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedCpfEquActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedCpfEquActionPerformed
-
     private void jButtonSalvarEquipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarEquipActionPerformed
-        mod.setNome(jTextFieldNomeFunc.getText());
-        mod.setCargo((String) jComboBoxFunçoes.getSelectedItem());
-        mod.setCpf(Integer.parseInt(jFormattedCpfEqu.getText()));
-        control.Salvar(mod);
+       
+        DefaultTableModel  dtmEquipe = (DefaultTableModel) jTableTabelaEquipe.getModel();
+        Object[] dados = {jTextFieldNomeFunc.getText(),txtCPF.getText(),jTextFieldCargo.getText()};
+        dtmEquipe.addRow(dados);
+                
     }//GEN-LAST:event_jButtonSalvarEquipActionPerformed
+
+    private void jTextFieldNomeFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeFuncActionPerformed
+
+    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,19 +261,19 @@ public class FormEquipe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCancelarEquip;
-    private javax.swing.JButton jButtonLupaEquip;
     private javax.swing.JButton jButtonSalvarEquip;
-    private javax.swing.JComboBox<String> jComboBoxFunçoes;
-    private javax.swing.JFormattedTextField jFormattedCpfEqu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCadastroEquipe;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCadastroEquipe;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableEquipe;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableTabelaEquipe;
+    private javax.swing.JTextField jTextFieldCargo;
     private javax.swing.JTextField jTextFieldNomeFunc;
-    private javax.swing.JTextField jTextFieldPesquisaEquip;
+    private javax.swing.JTextField txtCPF;
     // End of variables declaration//GEN-END:variables
 }
