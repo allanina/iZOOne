@@ -17,7 +17,7 @@ public class ConexaoBD {
     private String driver = "org.postgresql.Driver";
     private String caminho = "jdbc:postgresql://localhost:5432/iZOOne";
     private String usuario = "postgres";
-    private String senha = "adyiifxada123!";
+    private String senha = "";
     public Connection con;
     
     public void conexao(){ //metodo que realiza conexao com BD
